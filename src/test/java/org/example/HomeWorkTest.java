@@ -27,13 +27,47 @@ class HomeWorkTest {
     }
 
     @Test
-    void checkSecond(){
+    void checkSecond() {
         assertEquals(asList(3, 4), homeWork.getLeaveOrder(parseLines("+ 1\n" +
                 "+ 3\n" +
                 "+ 3\n" +
                 "? 2\n" +
                 "+ 1\n" +
                 "? 4")));
+        assertEquals(asList(3, 3, -1), homeWork.getLeaveOrder(parseLines(
+                "+ 1\n" +
+                        "+ 3\n" +
+                        "+ 3\n" +
+                        "? 2\n" +
+                        "? 3\n" +
+                        "? 4")));
+        assertEquals(asList(3, 3, -1, 0), homeWork.getLeaveOrder(parseLines(
+                "+ 1\n" +
+                        "+ 3\n" +
+                        "+ 3\n" +
+                        "? 2\n" +
+                        "? 3\n" +
+                        "? 4\n" +
+                        "+ 1\n" +
+                        "? 0\n"
+        )));
+        assertEquals(asList(0, -1, 0), homeWork.getLeaveOrder(parseLines(
+                "+ 0\n" +
+                        "+ 0\n" +
+                        "+ 0\n" +
+                        "? 0\n" +
+                        "+ 1\n" +
+                        "? 7\n" +
+                        "? 0\n"
+        )));
+        assertEquals(asList(-1, -1, -1, 1), homeWork.getLeaveOrder(parseLines(
+                "? 0\n" +
+                        "? 7\n" +
+                        "? 0\n" +
+                        "+ 1\n" +
+                        "+ 1\n" +
+                        "? 1\n"
+        )));
     }
 
     private static List<String> parseLines(String str) {
